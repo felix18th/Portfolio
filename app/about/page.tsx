@@ -2,14 +2,7 @@ import Image from "next/image";
 
 export default function Page() {
     return (
-        <section className="mx-auto flex max-w-3xl flex-col items-center gap-10 px-4 py-10 font-sans">
-            <Image
-                src="/felix.jpeg"
-                alt="Felix Adedokun"
-                className="h-auto w-full max-w-md rounded-lg"
-                width={960}
-                height={1280}
-            />
+        <section className="mx-auto flex max-w-3xl flex-col gap-10 px-4 py-10 font-sans">
             <article className="space-y-6 leading-7 text-zinc-300">
                 <p>
                     I am Felix Adedokun, a Data Analytics professional with two
@@ -43,6 +36,21 @@ export default function Page() {
                     innovation and achieve success.
                 </p>
             </article>
+            <a
+                href="/Felix_Adedokun_Resume DA.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="py-3 text-sm font-semibold text-zinc-100"
+            >
+                View My Resume
+            </a>
+            <Image
+                src="/felix.jpeg"
+                alt="Felix Adedokun"
+                className="h-auto w-full rounded-lg"
+                width={960}
+                height={1280}
+            />
         </section>
     );
 }
