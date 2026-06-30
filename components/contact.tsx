@@ -1,6 +1,6 @@
 "use client";
 
-import { useContact } from "@/app/hooks/useContact";
+import { useContact } from "@/hooks/useContact";
 
 const service = [
     "Data Analysis Project",
