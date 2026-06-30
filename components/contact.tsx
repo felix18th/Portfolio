@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useContact } from "@/app/hooks/useContact";
 
 const service = [
     "Data Analysis Project",
@@ -11,13 +11,8 @@ const service = [
 ];
 
 export default function Contact() {
-    const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
-    const [countryCode, setCountryCode] = useState("+234");
-    const [phone, setPhone] = useState("");
-    const [message, setMessage] = useState("");
+    const { form, setForm, submitMessage, isLoading } = useContact();
 
-    console.log(email, name);
     return (
         <section className="mt-12 border-t border-zinc-800 pt-8">
             <h1 className="mb-6 font-mono text-white">Contact</h1>
@@ -30,7 +25,7 @@ export default function Contact() {
                     </li>
                 ))}
             </ul>
-            <form className="mt-8 flex flex-col gap-6">
+            <form className="mt-8 flex flex-col gap-6" onSubmit={submitMessage}>
                 <div className="flex flex-col gap-2">
                     <label htmlFor="name" className="text-sm text-white">
                         Full Name
@@ -39,8 +34,10 @@ export default function Contact() {
                         id="name"
                         type="text"
                         placeholder="John Doe"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
+                        value={form.fullName}
+                        onChange={(e) =>
+                            setForm({ ...form, fullName: e.target.value })
+                        }
                         className="rounded-lg bg-zinc-800 px-4 py-3 text-sm text-zinc-100 placeholder-zinc-500 ring-1 ring-zinc-700 outline-none focus:ring-zinc-500"
                     />
                 </div>
@@ -53,8 +50,10 @@ export default function Contact() {
                         id="email"
                         type="email"
                         placeholder="john@example.com"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                        value={form.email}
+                        onChange={(e) =>
+                            setForm({ ...form, email: e.target.value })
+                        }
                         className="rounded-lg bg-zinc-800 px-4 py-3 text-sm text-zinc-100 placeholder-zinc-500 ring-1 ring-zinc-700 outline-none focus:ring-zinc-500"
                     />
                 </div>
@@ -65,8 +64,13 @@ export default function Contact() {
                     </label>
                     <div className="flex flex-col gap-2 sm:flex-row">
                         <select
-                            value={countryCode}
-                            onChange={(e) => setCountryCode(e.target.value)}
+                            value={form.countryCode}
+                            onChange={(e) =>
+                                setForm({
+                                    ...form,
+                                    countryCode: e.target.value,
+                                })
+                            }
                             className="w-full rounded-lg bg-zinc-800 px-4 py-3 text-sm text-zinc-100 ring-1 ring-zinc-700 outline-none focus:ring-zinc-500 sm:w-40"
                         >
                             <option value="+1">🇺🇸 +1</option>
@@ -90,8 +94,10 @@ export default function Contact() {
                             id="phone"
                             type="tel"
                             placeholder="801 234 5678"
-                            value={phone}
-                            onChange={(e) => setPhone(e.target.value)}
+                            value={form.phone}
+                            onChange={(e) =>
+                                setForm({ ...form, phone: e.target.value })
+                            }
                             className="flex-1 rounded-lg bg-zinc-800 px-4 py-3 text-sm text-zinc-100 placeholder-zinc-500 ring-1 ring-zinc-700 outline-none focus:ring-zinc-500"
                         />
                     </div>
@@ -105,15 +111,18 @@ export default function Contact() {
                         id="message"
                         rows={5}
                         placeholder="Write your message here..."
-                        value={message}
-                        onChange={(e) => setMessage(e.target.value)}
+                        value={form.message}
+                        onChange={(e) =>
+                            setForm({ ...form, message: e.target.value })
+                        }
                         className="rounded-lg bg-zinc-800 px-4 py-3 text-sm text-zinc-100 placeholder-zinc-500 ring-1 ring-zinc-700 outline-none focus:ring-zinc-500"
                     />
                 </div>
 
                 <button
+                    disabled={isLoading}
                     type="submit"
-                    className="self-start rounded-lg bg-zinc-100 px-6 py-3 text-sm font-medium text-zinc-900 transition-colors hover:bg-zinc-300"
+                    className="cursor-pointer self-start rounded-lg bg-zinc-100 px-6 py-3 text-sm font-medium text-zinc-900 transition-colors hover:bg-zinc-300"
                 >
                     Send Message
                 </button>
