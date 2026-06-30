@@ -35,6 +35,7 @@ export default function Contact() {
                         type="text"
                         placeholder="John Doe"
                         value={form.fullName}
+                        required
                         onChange={(e) =>
                             setForm({ ...form, fullName: e.target.value })
                         }
@@ -50,6 +51,7 @@ export default function Contact() {
                         id="email"
                         type="email"
                         placeholder="john@example.com"
+                        required
                         value={form.email}
                         onChange={(e) =>
                             setForm({ ...form, email: e.target.value })
@@ -65,6 +67,7 @@ export default function Contact() {
                     <div className="flex flex-col gap-2 sm:flex-row">
                         <select
                             value={form.countryCode}
+                            required
                             onChange={(e) =>
                                 setForm({
                                     ...form,
@@ -93,6 +96,7 @@ export default function Contact() {
                         <input
                             id="phone"
                             type="tel"
+                            required
                             placeholder="801 234 5678"
                             value={form.phone}
                             onChange={(e) =>
@@ -111,6 +115,7 @@ export default function Contact() {
                         id="message"
                         rows={5}
                         placeholder="Write your message here..."
+                        required
                         value={form.message}
                         onChange={(e) =>
                             setForm({ ...form, message: e.target.value })
